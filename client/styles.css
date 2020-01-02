@@ -51,3 +51,12 @@ body {
 .closeButton:hover {
   color: red;
 }
+
+.tab input[type=text] {
+  float: right;
+  padding: 4px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 12px;
+}

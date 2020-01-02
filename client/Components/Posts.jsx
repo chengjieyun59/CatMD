@@ -11,9 +11,10 @@ class Posts extends Component {
   }
 
   getData() {
-    fetch('/api/')
+    fetch('/api/getData')
     .then(res => res.json())
     .then((cats) => {
+      console.log('cats: ', cats);
       if (!Array.isArray(cats)) cats = [];
       return this.setState({ posts: cats });
     })

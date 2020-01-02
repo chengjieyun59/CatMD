@@ -14,10 +14,10 @@ app.use(express.static('client'));
 app.use('/api', apiRouter);
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-app.use((req, res) => res.send(404));
+app.use((req, res) => res.sendStatus(404));
 
 app.use((err, req, res, next) => {
   const defaultErr = {

@@ -17,14 +17,17 @@
       <button class="tablinks" onClick="openTab(event, 'hairball')">Hairball</button>
       <button class="tablinks" onClick="openTab(event, 'flea')">Flea</button>
       <button class="tablinks" onClick="openTab(event, 'vomiting')">Vomiting</button>
+      <input type="text" placeholder="Search..">
     </div>
     <div id="diabetes" class="tabcontent">
       <span onclick="this.parentElement.style.display='none'" class="closeButton">x</span>
       <h5>Diabetes is becoming more prevalent among indoor cats. Make sure they get enough exercise and play.</h5>
+      <div id="app"></div>
     </div>
     <div id="tapeworm" class="tabcontent">
       <span onclick="this.parentElement.style.display='none'" class="closeButton">x</span>
       <h5>Tapeworm is most commonly caused by cats ingesting fleas. They may need a dewormer pill.</h5>
+      <div id="app"></div>
     </div>
     <div id="hairball" class="tabcontent">
       <span onclick="this.parentElement.style.display='none'" class="closeButton">x</span>
@@ -41,6 +44,8 @@
     <div>
       <p>Copyright: MIT license</p>
     </div>
+    <div id="app"></div>
+    <script src="./build/bundle.js"></script>
     <script>
       document.getElementById("defaultOpen").click();
       function openTab(event, catdiseaseName) {
@@ -56,7 +61,5 @@
         event.currentTarget.className += " active";
       }
     </script>
-
-    <div id="app"></div>
   </body>
 </html>

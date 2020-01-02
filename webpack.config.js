@@ -1,4 +1,5 @@
 const path = require('path');
+
 module.exports = {
   entry: './client/index.js',
   output: {
@@ -19,13 +20,16 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
   devServer: {
-    publicPath: '/build/'
+    publicPath: '/build',
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
   }
 }
