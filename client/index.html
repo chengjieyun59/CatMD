@@ -11,6 +11,52 @@
     <header>
       <h1>CatMD =^.^= Forum</h1>
     </header>
+    <div class="tab">
+      <button class="tablinks" onclick="openTab(event, 'diabetes')" id="defaultOpen">Diabetes</button>
+      <button class="tablinks" onClick="openTab(event, 'tapeworm')">Tapeworm</button>
+      <button class="tablinks" onClick="openTab(event, 'hairball')">Hairball</button>
+      <button class="tablinks" onClick="openTab(event, 'flea')">Flea</button>
+      <button class="tablinks" onClick="openTab(event, 'vomiting')">Vomiting</button>
+    </div>
+    <div id="diabetes" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="closeButton">x</span>
+      <h5>Diabetes is becoming more prevalent among indoor cats. Make sure they get enough exercise and play.</h5>
+    </div>
+    <div id="tapeworm" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="closeButton">x</span>
+      <h5>Tapeworm is most commonly caused by cats ingesting fleas. They may need a dewormer pill.</h5>
+    </div>
+    <div id="hairball" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="closeButton">x</span>
+      <h5>To avoid hairballs, brush your cats regularly, especially if they are medium to long hair.</h5>
+    </div>
+    <div id="flea" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="closeButton">x</span>
+      <h5>If your cats have fleas, a flea collar can help.</h5>
+    </div>
+    <div id="vomiting" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="closeButton">x</span>
+      <h5>If the color of the vomit is yellowish-green, your cat has been starving and is vomiting bile. Feed them immediately.</h5>
+    </div>
+    <div>
+      <p>Copyright: MIT license</p>
+    </div>
+    <script>
+      document.getElementById("defaultOpen").click();
+      function openTab(event, catdiseaseName) {
+        const tabcontent = document.getElementsByClassName("tabcontent");
+        for (let i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        const tablinks = document.getElementsByClassName("tablinks");
+        for (let i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(catdiseaseName).style.display = "block";
+        event.currentTarget.className += " active";
+      }
+    </script>
+
     <div id="app"></div>
   </body>
 </html>

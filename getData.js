@@ -747,12 +747,28 @@ const randomCatDescriptions = [ 'Meow all night having their mate disturbing sle
 'Morning beauty routine of licking self tickle my belly at your own peril i will pester for food when youre in the kitchen even if its salad ask to go outside and ask to come inside and ask to go outside and ask to come inside and hate dog hey! you there, with the hands, but murf pratt ungow ungow. Annoy owner until he gives you food say meow repeatedly until belly rubs, feels good sleep in the bathroom sink and shove bum in owners face like camera lens yet human give me attention meow purr as loud as possible, be the most annoying cat that you can, and, knock everything off the table so snuggles up to shoulders or knees and purrs you to sleep or miaow then turn around and show you my bum. Touch my tail, i shred your hand purrrr mewl for food at 4am so groom forever, stretch tongue and leave it slightly out, blep do i like standing on litter cuz i sits when i have spaces, my cat buddies have no litter i live in luxury cat life.',
 'Meeeeeeeoooooooooooowwwwwwwwwww'];
 
-let longSQLqueries = '';
-for (let i = 0; i < 50; i += 1) {
-  longSQLqueries += `
-  INSERT INTO catInfo(name, photoUrl, healthProblem, description)
-  VALUES('${randomCatNames[i]}', '${randomCatImageUrls[i]}', 'diabetes', '${randomCatDescriptions[i]}');\n
-  `;
+// let longSQLqueries = '';
+// for (let i = 0; i < 50; i += 1) {
+//   longSQLqueries += `
+//   INSERT INTO catInfo(name, photoUrl, healthProblem, description)
+//   VALUES('${randomCatNames[i]}', '${randomCatImageUrls[i]}', 'diabetes', '${randomCatDescriptions[i]}');\n
+//   `;
+// }
+// console.log(longSQLqueries);
+
+// let longSQLqueries = `UPDATE catInfo
+// SET healthProblem = 'flea'
+// WHERE name = 'Molly'`;
+// for (let i = 11; i < 20; i += 1) {
+//   longSQLqueries += ` OR name = '${randomCatNames[i]}'`;
+// }
+// console.log(longSQLqueries);
+
+let longSQLqueries = `UPDATE catInfo
+SET healthProblem = 'vomiting'
+WHERE name = 'Zoe'`;
+for (let i = 41; i < 50; i += 1) {
+  longSQLqueries += ` OR name = '${randomCatNames[i]}'`;
 }
 console.log(longSQLqueries);
 
