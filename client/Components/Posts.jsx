@@ -14,7 +14,7 @@ class Posts extends Component {
     fetch('/api/getData')
     .then(res => res.json())
     .then((cats) => {
-      console.log('cats: ', cats);
+      // console.log('cats: ', cats);
       if (!Array.isArray(cats)) cats = [];
       return this.setState({ posts: cats });
     })
@@ -28,7 +28,7 @@ class Posts extends Component {
       postArray.push(<PostItem key={i} pet={this.state.posts[i]} />);
     }
     return (
-      <div>
+      <div className="container-posts">
         {postArray}
       </div>
     );

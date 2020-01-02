@@ -6,4 +6,8 @@ router.get('/getData', catController.getCats, (req, res) => {
   return res.status(200).json(res.locals.cats);
 });
 
+router.post('/getData', catController.addCat, (req, res) => {
+  return res.status(200).json(res.locals.cat);
+});
+
 module.exports = router;
