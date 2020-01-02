@@ -1,0 +1,43 @@
+{
+  "name": "catmd",
+  "version": "1.0.0",
+  "description": "This is an online forum where cat owners can discuss about their cats' health problems and share their stories.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "nodemon server/server.js & NODE_ENV=development webpack-dev-server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chengjieyun59/CatMD.git"
+  },
+  "author": "Jie Yun Catherine Cheng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chengjieyun59/CatMD/issues"
+  },
+  "homepage": "https://github.com/chengjieyun59/CatMD#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "css-loader": "^3.4.0",
+    "express": "^4.17.1",
+    "node-sass": "^4.13.0",
+    "nodemon": "^2.0.2",
+    "pg": "^7.17.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.1.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}
