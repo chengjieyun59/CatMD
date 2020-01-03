@@ -10,7 +10,7 @@ catController.getCats = (req, res, next) => {
     }
     const { rows } = response;
     res.locals.cats = rows;
-    console.log('res.locals.cats: ', res.locals.cats);
+    // console.log('res.locals.cats: ', res.locals.cats);
     return next();
   });
 }
@@ -29,6 +29,24 @@ catController.addCat = (req, res, next) => {
     const { rows } = response;
     res.locals.cat = rows;
     console.log('res.locals.cat: ', res.locals.cat);
+    return next();
+  });
+}
+
+catController.deleteCat = (req, res, next) => {
+  const text = `DELETE FROM catInfo
+  WHERE name = $1 RETURNING *;`
+
+  const { name } = req.body;
+  const values = [name];
+
+  db.query(text, values, (err, response) => {
+    if (err) {
+      return next(err);
+    }
+    const { rows } = response;
+    res.locals.deletedCat = rows;
+    console.log('res.locals.deletedCat: ', res.locals.deletedCat);
     return next();
   });
 }
