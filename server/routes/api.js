@@ -10,8 +10,12 @@ router.post('/getData', catController.addCat, (req, res) => {
   return res.status(200).json(res.locals.cat);
 });
 
+router.put('/getData', catController.editCat, (req, res) => {
+  return res.status(200).json(res.locals.editedCat);
+})
+
 router.delete('/getData', catController.deleteCat, (req, res) => {
-  return res.status(200);
+  return res.status(200).json(res.locals.deletedCat);
 })
 
 module.exports = router;

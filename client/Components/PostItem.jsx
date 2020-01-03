@@ -7,10 +7,10 @@ const PostItem = (props) => {
         <div>{`Pet name: ${props.pet.name}`}</div>
         <img className="catImg" src={props.pet.photourl} />
       </div>
-      <div className="postRight">
-        {/* <span onclick="this.parentElement.parentElement.style.display='none'" class="closeButton">x</span> */}
+      <div id="postRight">
         <div>{props.pet.description}</div>
-        <button type="button" onClick={() => props.handleClick(props.pet.name)}>Delete</button>
+        <button className="button"type="button" onClick={() => props.handleClickEdit(props.pet.name, props.pet.description)}>Edit</button>
+        <button className="delbutton" type="button" onClick={() => props.handleClickDelete(props.pet.name)}>Delete</button>
       </div>
     </div>
   );

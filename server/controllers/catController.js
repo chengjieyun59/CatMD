@@ -33,6 +33,25 @@ catController.addCat = (req, res, next) => {
   });
 }
 
+catController.editCat = (req, res, next) => {
+  const text = `UPDATE catInfo
+  SET description = $1
+  WHERE name = $2 RETURNING *;`
+
+  const { petDescription, petName } = req.body;
+  const values = [petDescription, petName];
+
+  db.query(text, values, (err, response) => {
+    if (err) {
+      return next(err);
+    }
+    const { rows } = response;
+    res.locals.editedCat = rows;
+    console.log('res.locals.editedCat: ', res.locals.editedCat);
+    return next();
+  });
+}
+
 catController.deleteCat = (req, res, next) => {
   const text = `DELETE FROM catInfo
   WHERE name = $1 RETURNING *;`
