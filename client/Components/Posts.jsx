@@ -21,7 +21,6 @@ class Posts extends Component {
     fetch('/api/getData')
     .then(res => res.json())
     .then((cats) => {
-      // console.log('cats: ', cats);
       if (!Array.isArray(cats)) cats = [];
       if (this.state.isEditing.length !== this.state.posts.length) {
         const isEditing = [];
@@ -40,7 +39,6 @@ class Posts extends Component {
     const currState = Object.assign(this.state, {});
     for (let post of currState.posts) {
       if (name === post.name) {
-        console.log('post: ', post, 'name:', name);
         fetch('/api/getData', {
           method: 'DELETE',
           headers: {
@@ -66,19 +64,18 @@ class Posts extends Component {
     }
   }
 
-
+  // call this method when someone clicks "submit" after editing in the edit box
   handleClickSave(event, key) {
-    // console.log('key', key);
+    const userInput = document.getElementById("userInput").value;
     const posts = [].concat(this.state.posts);
-    posts[key].description = event.target.value;
+    posts[key].description = userInput;
     this.setState({
       posts
     });
-    console.log('this.state.posts[key]: ', this.state.posts[key]);
   }
 
+  // when edit form is submitted, save to the database
   handleSavetoDB(event, key) {
-    console.log('editted this.state.posts[key]: ', this.state.posts[key]);
     const data = {
       posts: this.state.posts,
       isEditing: this.state.isEditing
@@ -87,7 +84,7 @@ class Posts extends Component {
     fetch('/api/getData', {
       method: 'PUT',
       headers: {
-        "Content-Type": 'Application/JSON'
+        "Content-Type": 'application/json'
       },
       body: JSON.stringify(data)
     })
@@ -100,28 +97,6 @@ class Posts extends Component {
     const isEditing = [].concat(this.state.isEditing);
     isEditing[key] = false;
     this.setState({ isEditing });
-
-    // const currState = Object.assign(this.state, {});
-    // for (let i = 0; i < currState.posts.length; i += 1) {
-    //   const post = currState.posts[i];
-    //   if (this.currState.isEditing[i] === true) {
-    //     console.log('post: ', post);
-    //     fetch('/api/getData', {
-    //       method: 'PUT',
-    //       headers: {
-    //         "Content-Type": 'Application/JSON'
-    //       },
-    //       body: JSON.stringify(post)
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => console.log(data))
-    //     .catch(err => console.log('delete cats error: ', err));
-
-    //     const isEditing = [].concat(this.state.isEditing);
-    //     isEditing[i] = false;
-    //     this.setState({ isEditing });
-    //   }
-    // }
   }
 
   render() {
@@ -129,18 +104,17 @@ class Posts extends Component {
     const postArray = [];
     for (let i = 0; i < this.state.posts.length; i += 1) {
       let toShow;
-      // console.log('this.state.isEditing: ', this.state.isEditing);
       if (!this.state.isEditing[i]) {
         toShow = <PostItem key={i} pet={this.state.posts[i]} isEditing={this.state.isEditing} handleClickDelete={this.handleClickDelete} handleClickEdit={this.handleClickEdit} />;
       } else {
         toShow = (
           <div className="toShow">
             <PostItem key={i} pet={this.state.posts[i]} isEditing={this.state.isEditing} handleClickDelete={this.handleClickDelete} handleClickEdit={this.handleClickEdit} />
-            <form key={i+100} onSubmit={() => this.handleSaveEdit(event, i)}>
+            <form key={i+100} onSubmit={() => this.handleSavetoDB(event, i)}>
               <label>
-                Comment: <input type="text" key={i} placeholder={this.state.posts[i].description} />
+                Comment: <input type="text" key={i} id="userInput" placeholder={this.state.posts[i].description} />
               </label>
-              <input type="submit" key={i} value="Submit" id="submitButton" onClick={() => this.handleChange(event, i)}/>
+              <input type="submit" key={i} value="Submit" id="submitButton" onClick={() => this.handleClickSave(event, i)}/>
             </form>
           </div>
         );

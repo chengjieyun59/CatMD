@@ -10,7 +10,6 @@ catController.getCats = (req, res, next) => {
     }
     const { rows } = response;
     res.locals.cats = rows;
-    // console.log('res.locals.cats: ', res.locals.cats);
     return next();
   });
 }
@@ -18,17 +17,14 @@ catController.getCats = (req, res, next) => {
 catController.addCat = (req, res, next) => {
   const text = `INSERT INTO catInfo(name, photoUrl, healthProblem, description)
   VALUES($1, $2, 'diabetes', $3) RETURNING *;`
-
   const { petName, petPhotoUrl, petDescription } = req.body;
   const values = [petName, petPhotoUrl, petDescription];
-
   db.query(text, values, (err, response) => {
     if (err) {
       return next(err);
     }
     const { rows } = response;
     res.locals.cat = rows;
-    console.log('res.locals.cat: ', res.locals.cat);
     return next();
   });
 }
@@ -37,17 +33,20 @@ catController.editCat = (req, res, next) => {
   const text = `UPDATE catInfo
   SET description = $1
   WHERE name = $2 RETURNING *;`
-
-  const { petDescription, petName } = req.body;
-  const values = [petDescription, petName];
-
+  let index;
+  for (let i = 0; i < req.body.isEditing.length; i += 1) {
+    if (req.body.isEditing[i]) {
+      index = i;
+    }
+  }
+  const { description, name } = req.body.posts[index];
+  const values = [description, name];
   db.query(text, values, (err, response) => {
     if (err) {
       return next(err);
     }
     const { rows } = response;
     res.locals.editedCat = rows;
-    console.log('res.locals.editedCat: ', res.locals.editedCat);
     return next();
   });
 }
@@ -55,17 +54,14 @@ catController.editCat = (req, res, next) => {
 catController.deleteCat = (req, res, next) => {
   const text = `DELETE FROM catInfo
   WHERE name = $1 RETURNING *;`
-
   const { name } = req.body;
   const values = [name];
-
   db.query(text, values, (err, response) => {
     if (err) {
       return next(err);
     }
     const { rows } = response;
     res.locals.deletedCat = rows;
-    console.log('res.locals.deletedCat: ', res.locals.deletedCat);
     return next();
   });
 }
